@@ -1,0 +1,3 @@
+[submodule "japi-compliance-checker"]
+	path = japi-compliance-checker
+	url = https://github.com/lvc/japi-compliance-checker.git

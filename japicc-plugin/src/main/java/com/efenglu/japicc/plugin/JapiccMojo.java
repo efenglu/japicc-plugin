@@ -658,7 +658,7 @@ public class JapiccMojo extends AbstractMojo {
             if (temp.exists()) {
                 return temp;
             }
-            FileUtils.copyStreamToFile(new URLInputStreamFacade(JapiccMojo.class.getResource("/japi-compliance-checker")), temp);
+            FileUtils.copyStreamToFile(new URLInputStreamFacade(JapiccMojo.class.getResource("/japi-compliance-checker.pl")), temp);
             return temp;
         } catch (IOException e) {
             throw new MojoExecutionException("Failed to load JAPICC script from jar", e);
