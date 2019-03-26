@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.efenglu.japicc</groupId>
+  <artifactId>japicc-parent</artifactId>
+  <version>1.0.X-SNAPSHOT</version>
+
+  <packaging>pom</packaging>
+
+  <name>JAPICC Parent</name>
+
+  <scm>
+      <developerConnection>scm:https://github.com/efenglu/japicc-plugin.git</developerConnection>
+      <tag>HEAD</tag>
+  </scm>
+
+  <url>https://github.com/efenglu/japicc-plugin</url>
+
+  <properties>
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+      <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+  </properties>
+
+  <dependencyManagement>
+      <dependencies>
+          <dependency>
+              <groupId>commons-io</groupId>
+              <artifactId>commons-io</artifactId>
+              <version>1.4</version>
+          </dependency>
+          <dependency>
+              <groupId>junit</groupId>
+              <artifactId>junit</artifactId>
+              <version>4.12</version>
+              <scope>test</scope>
+          </dependency>
+      </dependencies>
+  </dependencyManagement>
+
+  <build>
+      <pluginManagement>
+          <plugins>
+              <plugin>
+                  <groupId>io.repaint.maven</groupId>
+                  <artifactId>tiles-maven-plugin</artifactId>
+                  <version>2.10</version>
+              </plugin>
+          </plugins>
+      </pluginManagement>
+  </build>
+
+  <distributionManagement>
+      <site>
+          <id>gh_page</id>
+          <name>Git Hub Page</name>
+          <url>https://github.com/efenglu/japicc-plugin/gh_pages</url>
+      </site>
+  </distributionManagement>
+
+    <modules>
+        <module>japicc-plugin</module>
+        <module>japicc-annotations</module>
+    </modules>
+
+</project>

@@ -1,0 +1,18 @@
+ ------
+ Introduction
+ ------
+
+${project.name}
+
+  The Java API Compiance Checker Plugin (JAPICC) generates a report regarding the evolution of the API.
+  For more information about JAPICC, see {{{https://github.com/lvc/japi-compliance-checker}https://github.com/lvc/japi-compliance-checker}}.
+
+* Goals Overview
+
+   The Japicc Plugin has one goal:
+
+   * {{{./japicc-mojo.html}japicc:check}} is the check goal.
+
+* Usage
+
+  General instructions on how to use the Checkstyle Plugin can be found on the {{{./usage.html}usage page}}.

@@ -1,0 +1,38 @@
+ ------
+ Usage
+ ------
+
+
+Usage
+
+ The following examples describe the basic usage of the Java API Compliance Checker Plugin.
+
++-----+
+mvn japicc:check
++-----+
+
+* Checking for Violations as Part of the Build
+
+  If you want to report to the console or fail
+  the build, you must add an execution of <<<japicc::check>>> to the <<<\<build\>>>> element
+  and configure any options that you need.
+
+  For example:
+
++------+
+ <plugin>
+    <groupId>com.efenglu.japicc</groupId>
+    <artifactId>japicc-plugin</artifactId>
+    <version>${project.version}</version>
+    <executions>
+        <execution>
+            <id>check</id>
+            <phase>verify</phase>
+            <goals>
+                <goal>check</goal>
+            </goals>
+        </execution>
+    </executions>
+</plugin>
++------+
+
