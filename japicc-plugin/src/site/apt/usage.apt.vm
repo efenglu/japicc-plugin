@@ -21,7 +21,7 @@ mvn japicc:check
 
 +------+
  <plugin>
-    <groupId>com.efenglu.japicc</groupId>
+    <groupId>io.github.efenglu.japicc</groupId>
     <artifactId>japicc-plugin</artifactId>
     <version>${project.version}</version>
     <executions>

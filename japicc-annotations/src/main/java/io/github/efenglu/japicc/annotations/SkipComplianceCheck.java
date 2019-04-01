@@ -1,4 +1,4 @@
-package com.efenglu.japicc.annotations;
+package io.github.efenglu.japicc.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

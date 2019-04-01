@@ -1,6 +1,6 @@
-package com.efenglu.japicc.plugin;
+package io.github.efenglu.japicc.plugin;
 
-import com.efenglu.japicc.annotations.SkipComplianceCheck;
+import io.github.efenglu.japicc.annotations.SkipComplianceCheck;
 import org.apache.commons.lang.StringUtils;
 import org.apache.maven.execution.MavenSession;
 import org.apache.maven.plugin.AbstractMojo;

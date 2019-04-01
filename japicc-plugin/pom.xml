@@ -11,7 +11,7 @@
     </prerequisites>
 
     <parent>
-        <groupId>com.efenglu.japicc</groupId>
+        <groupId>io.github.efenglu.japicc</groupId>
         <artifactId>japicc-parent</artifactId>
         <version>1.0.X-SNAPSHOT</version>
     </parent>
@@ -99,7 +99,7 @@
                 <extensions>true</extensions>
                 <configuration>
                     <tiles>
-                        <tile>com.efenglu.maven.tiles:project-java:[1.0, 2)</tile>
+                        <tile>io.github.efenglu.maven.tiles:project-java:[1.0.2, 2)</tile>
                     </tiles>
                 </configuration>
             </plugin>
