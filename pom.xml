@@ -11,6 +11,7 @@
     <packaging>pom</packaging>
 
     <name>${project.groupId}:${project.artifactId}</name>
+    <description>Parent pom for JAPICC</description>
 
     <scm>
         <connection>scm:git:https://github.com/efenglu/japicc-plugin.git</connection>

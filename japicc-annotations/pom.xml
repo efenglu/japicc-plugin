@@ -4,6 +4,7 @@
     <packaging>jar</packaging>
 
     <name>${project.groupId}:${project.artifactId}</name>
+    <description>Custom annotation to skip semantic version rule enforcement</description>
 
     <parent>
         <groupId>io.github.efenglu.japicc</groupId>

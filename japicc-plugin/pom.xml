@@ -5,6 +5,7 @@
     <packaging>maven-plugin</packaging>
 
     <name>${project.groupId}:${project.artifactId}</name>
+    <description>Maven Plugin to enforcer Java Semantic Versioning rules</description>
 
     <prerequisites>
         <maven>3.3.3</maven>
