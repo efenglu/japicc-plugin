@@ -1,63 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-  <modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
-  <groupId>io.github.efenglu.japicc</groupId>
-  <artifactId>japicc-parent</artifactId>
-  <version>1.0.X-SNAPSHOT</version>
+    <groupId>io.github.efenglu.japicc</groupId>
+    <artifactId>japicc-parent</artifactId>
+    <version>1.0.X-SNAPSHOT</version>
 
-  <packaging>pom</packaging>
+    <packaging>pom</packaging>
 
-  <name>JAPICC Parent</name>
+    <name>${project.groupId}:${project.artifactId}</name>
 
-  <scm>
-      <developerConnection>scm:https://github.com/efenglu/japicc-plugin.git</developerConnection>
-      <tag>HEAD</tag>
-  </scm>
+    <scm>
+        <connection>scm:git:https://github.com/efenglu/japicc-plugin.git</connection>
+        <developerConnection>scm:git:git//github.com/efenglu/japicc-plugin.git</developerConnection>
+        <url>https://github.com/efenglu/japicc-plugin</url>
+        <tag>HEAD</tag>
+    </scm>
 
-  <url>https://github.com/efenglu/japicc-plugin</url>
+    <url>https://github.com/efenglu/japicc-plugin</url>
 
-  <properties>
-      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-      <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-  </properties>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+        <site>
+            <id>gh_page</id>
+            <name>Git Hub Page</name>
+            <url>https://github.com/efenglu/japicc-plugin/gh_pages</url>
+        </site>
+    </distributionManagement>
 
-  <dependencyManagement>
-      <dependencies>
-          <dependency>
-              <groupId>commons-io</groupId>
-              <artifactId>commons-io</artifactId>
-              <version>1.4</version>
-          </dependency>
-          <dependency>
-              <groupId>junit</groupId>
-              <artifactId>junit</artifactId>
-              <version>4.12</version>
-              <scope>test</scope>
-          </dependency>
-      </dependencies>
-  </dependencyManagement>
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>http://www.opensource.org/licenses/mit-license.php</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
 
-  <build>
-      <pluginManagement>
-          <plugins>
-              <plugin>
-                  <groupId>io.repaint.maven</groupId>
-                  <artifactId>tiles-maven-plugin</artifactId>
-                  <version>2.10</version>
-              </plugin>
-          </plugins>
-      </pluginManagement>
-  </build>
+    <developers>
+        <developer>
+            <name>Erik Englund</name>
+            <email>englundGiant@gmail.com</email>
+            <organization>Github Efenglu</organization>
+            <organizationUrl>https://github.com/efenglu</organizationUrl>
+        </developer>
+    </developers>
 
-  <distributionManagement>
-      <site>
-          <id>gh_page</id>
-          <name>Git Hub Page</name>
-          <url>https://github.com/efenglu/japicc-plugin/gh_pages</url>
-      </site>
-  </distributionManagement>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>1.4</version>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.12</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>io.repaint.maven</groupId>
+                    <artifactId>tiles-maven-plugin</artifactId>
+                    <version>2.10</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 
     <modules>
         <module>japicc-plugin</module>

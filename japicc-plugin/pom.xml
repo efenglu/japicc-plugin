@@ -4,7 +4,7 @@
     <artifactId>japicc-plugin</artifactId>
     <packaging>maven-plugin</packaging>
 
-    <name>JAPICC Maven Plugin</name>
+    <name>${project.groupId}:${project.artifactId}</name>
 
     <prerequisites>
         <maven>3.3.3</maven>

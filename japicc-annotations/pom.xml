@@ -3,7 +3,7 @@
     <artifactId>japicc-annotations</artifactId>
     <packaging>jar</packaging>
 
-    <name>japicc Annotations</name>
+    <name>${project.groupId}:${project.artifactId}</name>
 
     <parent>
         <groupId>io.github.efenglu.japicc</groupId>
