@@ -92,25 +92,4 @@
         <module>japicc-annotations</module>
     </modules>
 
-    <profiles>
-        <profile>
-            <id>release</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>io.repaint.maven</groupId>
-                        <artifactId>tiles-maven-plugin</artifactId>
-                        <extensions>true</extensions>
-                        <inherited>false</inherited>
-                        <configuration>
-                            <tiles>
-                                <tile>io.github.efenglu.maven.tiles:project-java-release:[1.0.2, 2)</tile>
-                            </tiles>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
-
 </project>
