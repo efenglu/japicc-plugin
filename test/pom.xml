@@ -2,14 +2,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <artifactId>japicc-parent</artifactId>
-        <groupId>io.github.efenglu.japicc</groupId>
-        <version>1.0.X-SNAPSHOT</version>
-    </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <groupId>io.github.efenglu.japicc</groupId>
     <artifactId>test</artifactId>
+    <version>1.1.X-SNAPSHOT</version>
 
     <build>
         <plugins>
