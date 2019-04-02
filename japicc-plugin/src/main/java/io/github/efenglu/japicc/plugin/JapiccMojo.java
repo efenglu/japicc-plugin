@@ -28,14 +28,28 @@ import org.eclipse.aether.resolution.ArtifactResult;
 import org.eclipse.aether.resolution.VersionRangeRequest;
 import org.eclipse.aether.resolution.VersionRangeResolutionException;
 import org.eclipse.aether.resolution.VersionRangeResult;
+import org.eclipse.aether.version.Version;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
+import java.nio.file.FileVisitOption;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Stream;
 
 /**
  * A tool for checking backward binary and source-level compatibility of a Java library API.  The tool checks classes
@@ -300,9 +314,9 @@ public class JapiccMojo extends AbstractMojo {
     private String title;
 
     /**
-     * Skip compliance check if the version matches X.0.0 since it is the first version in a series
+     * Skip compliance check if it is the first version in a series
      */
-    @Parameter(defaultValue = "false", property = "japicc.skipFirstInSeries")
+    @Parameter(defaultValue = "true", property = "japicc.skipFirstInSeries")
     private boolean skipFirstInSeries;
 
     /**
@@ -310,7 +324,6 @@ public class JapiccMojo extends AbstractMojo {
      */
     @Parameter(defaultValue = "/usr/bin/perl", property = "japicc.perlExec", required = true)
     private String perlExec;
-
 
     public void execute() throws MojoExecutionException, MojoFailureException {
         if (!"jar".equals(project.getPackaging())) {
@@ -349,7 +362,9 @@ public class JapiccMojo extends AbstractMojo {
         String previousVersion;
         if ((StringUtils.isBlank(this.previousVersion))) {
             Artifact rangeArtifact = new DefaultArtifact(String.format(
-                    "[%1$s.0.0, %2$s.0.0)",
+                    "%1$s:%2$s:[%3$s.0.0,%4$s.0.0)",
+                    previousGroupId,
+                    previousArtifactId,
                     majorVersion,
                     majorVersion + 1
             ));
@@ -357,17 +372,30 @@ public class JapiccMojo extends AbstractMojo {
             final VersionRangeResult versionRangeResult;
             try {
                 versionRangeResult = repoSystem.resolveVersionRange(repoSession, versionRangeRequest);
-                previousVersion = versionRangeResult.getHighestVersion().toString();
+                previousVersion = versionRangeResult.getVersions().stream()
+                        .map(Version::toString)
+                        .filter(v -> !v.contains("SNAPSHOT"))
+                        .reduce((first, second) -> second)
+                        .orElse(null);
             } catch (VersionRangeResolutionException e) {
                 if (skipFirstInSeries) {
-                    getLog().debug("Failed to resolve previous previousArtifact, assuming first in series, skipping");
+                    getLog().debug("Failed to resolve previous artifact, assuming first in series, skipping");
                     return;
                 } else {
-                    throw new MojoExecutionException("Failed to resolve previous previousArtifact", e);
+                    throw new MojoExecutionException("Failed to resolve previous artifact", e);
                 }
             }
         } else {
             previousVersion = this.previousVersion;
+        }
+
+        if (previousVersion == null) {
+            if (skipFirstInSeries) {
+                getLog().debug("Failed to resolve previous artifact, assuming first in series, skipping");
+                return;
+            } else {
+                throw new MojoExecutionException("Failed to resolve previous artifact");
+            }
         }
 
         String previousArtifactStr = MessageFormat.format("{0}:{1}:{2}", previousGroupId, previousArtifactId, previousVersion);
@@ -658,9 +686,33 @@ public class JapiccMojo extends AbstractMojo {
             if (temp.exists()) {
                 return temp;
             }
-            FileUtils.copyStreamToFile(new URLInputStreamFacade(JapiccMojo.class.getResource("/japi-compliance-checker.pl")), temp);
+            getLog().info("Copying japi-compliance-checker.pl to " + temp);
+            URL plURL = JapiccMojo.class.getResource("/japi-compliance-checker.pl");
+            Objects.requireNonNull(plURL, "No such resource " + plURL);
+            FileUtils.copyStreamToFile(new URLInputStreamFacade(plURL), temp);
+            URI uri = JapiccMojo.class.getResource("/modules").toURI();
+            Path myPath;
+            if (uri.getScheme().equals("jar")) {
+                FileSystem fileSystem = FileSystems.newFileSystem(uri, Collections.emptyMap());
+                myPath = fileSystem.getPath("/modules");
+            } else {
+                myPath = Paths.get(uri);
+            }
+            Stream<Path> walk = Files.walk(myPath,
+                    Integer.MAX_VALUE,
+                    FileVisitOption.FOLLOW_LINKS)
+                    .filter(Files::isRegularFile);
+            for (Iterator<Path> it = walk.iterator(); it.hasNext(); ) {
+                final Path path = it.next();
+                String pathStr = path.toString();
+                File moduleFile = new File(target, pathStr);
+                getLog().info("Copying " + pathStr + " to " + moduleFile);
+                final URL url = JapiccMojo.class.getResource(pathStr);
+                Objects.requireNonNull(url, "No such resource " + pathStr);
+                FileUtils.copyStreamToFile(new URLInputStreamFacade(url), moduleFile);
+            }
             return temp;
-        } catch (IOException e) {
+        } catch (IOException | URISyntaxException e) {
             throw new MojoExecutionException("Failed to load JAPICC script from jar", e);
         }
     }

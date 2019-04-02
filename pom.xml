@@ -95,6 +95,12 @@
 
     <profiles>
         <profile>
+            <id>test</id>
+            <modules>
+                <module>test</module>
+            </modules>
+        </profile>
+        <profile>
             <id>release</id>
             <build>
                 <plugins>
