@@ -9,7 +9,7 @@
     <parent>
         <groupId>io.github.efenglu.japicc</groupId>
         <artifactId>japicc-parent</artifactId>
-        <version>1.0.X-SNAPSHOT</version>
+        <version>1.0.0</version>
     </parent>
 
     <build>
