@@ -8,7 +8,7 @@ fi
 
 ./mvnw versions:set -DnewVersion=${newVersion} -DgenerateBackupPoms=false
 ./mvnw clean install -Prelease
-gpg -verify target/*.pom.asc
+gpg --verify target/*.pom.asc
 read -n 1 -p "Press enter to continue" continue
 
 ./mvnw clean deploy -Prelease
