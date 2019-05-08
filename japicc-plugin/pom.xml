@@ -14,7 +14,7 @@
     <parent>
         <groupId>io.github.efenglu.japicc</groupId>
         <artifactId>japicc-parent</artifactId>
-        <version>1.0.0</version>
+        <version>1.0.X-SNAPSHOT</version>
     </parent>
 
     <properties>
