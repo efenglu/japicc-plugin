@@ -17,7 +17,7 @@
             <plugin>
                 <groupId>io.github.efenglu.japicc</groupId>
                 <artifactId>japicc-plugin</artifactId>
-                <version>1.0.X-SNAPSHOT</version>
+                <version>1.0.2</version>
                 <executions>
                     <execution>
                         <goals>
