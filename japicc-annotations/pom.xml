@@ -1,0 +1,30 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>japicc-annotations</artifactId>
+    <packaging>jar</packaging>
+
+    <name>${project.groupId}:${project.artifactId}</name>
+    <description>Custom annotation to skip semantic version rule enforcement</description>
+
+    <parent>
+        <groupId>io.github.efenglu.japicc</groupId>
+        <artifactId>japicc-parent</artifactId>
+        <version>1.0.X-SNAPSHOT</version>
+    </parent>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>io.repaint.maven</groupId>
+                <artifactId>tiles-maven-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <tiles>
+                        <tile>io.github.efenglu.maven.tiles:project-java:[1.0.2, 2)</tile>
+                    </tiles>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

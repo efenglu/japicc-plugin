@@ -1,0 +1,1 @@
+../../../../japi-compliance-checker/japi-compliance-checker.pl
